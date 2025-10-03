@@ -72,7 +72,7 @@ Simply open index.html in your browser. No server required.
 <table>
   <tr>
     <th> Index Page</th>
-    <th> Index Page</th>
+    <th> Index Main Page</th>
   </tr>
   <tr>
     <td><img src="images/index1.png" width="370"/> </td>
