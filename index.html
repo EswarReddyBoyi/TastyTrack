@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Book</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Splash Screen -->
+<div id="splash-screen">
+    <img src="images/logoo.png" alt="Logo" class="splash-logo">
+</div>
+
+    <!-- Navbar -->
+    <nav>
+        <div class="nav-left">
+            <img src="images/logo.png" alt="Logo" class="logo">
+
+        </div>
+        <div class="nav-right">
+            <img src="images/profile.png" alt="Profile" class="profile-icon" id="profile-btn">
+            <div class="profile-menu" id="profile-menu">
+                <button id="signup-btn">Sign Up</button>
+                <button id="signin-btn">Sign In</button>
+                <button id="google-btn">Sign In with Google</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <div class="left-section">
+            <!-- Add Recipe Form -->
+            <section id="add-recipe">
+                <h2>Add a New Recipe</h2>
+                <form id="recipe-form">
+                    <label for="name">Recipe Name:</label>
+                    <input type="text" id="name" required>
+
+                    <label for="ingredients">Ingredients (comma separated):</label>
+                    <textarea id="ingredients" required></textarea>
+
+                    <label for="steps">Preparation Steps:</label>
+                    <textarea id="steps" required></textarea>
+
+                    <label for="image">Recipe Image:</label>
+                    <input type="file" id="image" accept="image/*">
+
+                    <button type="submit">Add Recipe</button>
+                </form>
+            </section>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Place this inside <body> -->
+<div id="falling-food-container"></div>
+
+        <div class="right-section">
+            <!-- Search Recipes -->
+            <section id="search-recipe">
+                <h2>Search Recipes</h2>
+                <input type="text" id="search" placeholder="Search by name or ingredients">
+            </section>
+
+            <!-- View Recipes -->
+            <section id="recipe-list">
+                <h2>All Recipes</h2>
+                <div id="recipes-container"></div>
+            </section>
+        </div>
+    </main>
+
+    <div class="info-bar">
+    <p>
+    🍽️<strong> Tasty Tracks</strong> — Paint your plate with recipes ✨ |
+    📖 Explore 1000+ recipes from all cuisines 🌍 |
+    👤 Create & edit your profile easily |
+    ❤️ Save and favorite recipes |
+    🥗 Healthy and quick meal ideas |
+    🍕 Street food specials from around the world |
+    🍰 Desserts to sweeten your day |
+    ☕ Beverages & smoothies collection |
+    🥘 Traditional dishes with modern twists |
+    🔍 Search recipes by name or ingredient |
+    📸 Upload food pictures with your recipes |
+    ✨ Smart profile-based personalization |
+    🛒 Auto-generate shopping list from ingredients |
+    🌱 Vegan & vegetarian specials |
+    🥩 Protein-packed non-veg recipes |
+    ⏲️ Quick 15-min snack recipes |
+    🎉 Festival & seasonal recipes |
+    🍴 Kitchen tips and tricks |
+    🧑‍🍳 Cook, share, and inspire others |
+    🚀 Built with HTML, CSS, JS & Local Storage |
+    © 2025 Tasty Tracks. All rights reserved.
+  </p>
+</div>
+
+    <footer>
+        <p>© 2025 Tasty Tracks | All rights reserved | Eswar Reddy Boyi | Contact: eswarboyi7@gmail.com </p>
+    </footer>
+
+    <script>
+        const foodImages = [
+  'images/food1.png',
+  'images/food2.png',
+  'images/food3.png',
+  'images/food4.png',
+  'images/food5.png'
+]; // Add your food icons here
+
+const container = document.getElementById('falling-food-container');
+
+function spawnFood() {
+  const food = document.createElement('img');
+  food.src = foodImages[Math.floor(Math.random() * foodImages.length)];
+  food.classList.add('falling-food');
+
+  // Randomly choose left or right edge
+  const side = Math.random() < 0.5 ? 'left' : 'right';
+  food.style[side] = '0px';
+  
+  // Random vertical start position (slightly off screen)
+  food.style.top = '-50px';
+  
+  // Random speed between 5s to 10s
+  const duration = 5000 + Math.random() * 5000;
+  food.style.animationDuration = duration + 'ms';
+
+  // Optional: random horizontal shift for left/right edge
+  const horizontalShift = Math.random() * 50; // 0-50px
+  if (side === 'left') food.style.left = horizontalShift + 'px';
+  else food.style.right = horizontalShift + 'px';
+
+  container.appendChild(food);
+
+  // Remove element after animation
+  setTimeout(() => {
+    food.remove();
+  }, duration);
+}
+
+// Spawn continuously
+setInterval(spawnFood, 500); // spawn every 0.5s
+
+    </script>
+    <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    setTimeout(() => {
+      document.getElementById("splash-screen").style.display = "none";
+    }, 3000); // hides after 3 seconds
+  });
+</script>
+
+    <script src="js/script.js"></script>
+</body>

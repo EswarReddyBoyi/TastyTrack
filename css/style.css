@@ -1,0 +1,414 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body and Layout */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f7f7f7;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Navbar */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 30px;
+    background-color: #fff; /* white navbar */
+    border-bottom: 4px solid #FF4500; /* dark orange edge */
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 6px rgba(255,140,0,0.15); /* light orange shadow */
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+}
+
+.nav-left .logo {
+    height: 70px;
+    margin-right: 10px;
+}
+
+.nav-left h1 {
+    font-size: 24px;
+    color: #FF4500; /* dark orange matching logo */
+}
+
+.nav-right {
+    position: relative;
+}
+
+.profile-icon {
+    height: 40px;
+    width: 40px;
+    cursor: pointer;
+    border-radius: 50%;
+    border: 2px solid #FF4500; /* dark orange border */
+    transition: transform 0.3s;
+}
+
+.profile-icon:hover {
+    transform: scale(1.1);
+}
+
+.profile-menu {
+    display: none;
+    position: absolute;
+    top: 50px;
+    right: 0;
+    background-color: #fff;
+    color: #333;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(255,140,0,0.25); /* light orange shadow */
+    padding: 10px;
+    z-index: 100;
+    min-width: 180px;
+}
+
+.profile-menu button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background: #FF4500;
+    border: none;
+    text-align: center;
+    cursor: pointer;
+    font-size: 14px;
+    color: #fff;
+    border-radius: 6px;
+    margin-bottom: 5px;
+    transition: background-color 0.3s;
+}
+
+.profile-menu button:hover {
+    background-color: #cc3700;
+}
+
+/* Main Layout */
+main {
+    display: flex;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0;
+    gap: 20px;
+}
+
+/* Left Section - Add Recipe Form */
+.left-section {
+    flex: 0 0 auto; /* width determined by form */
+    display: flex;
+    justify-content: flex-start;
+}
+
+/* Add Recipe Form */
+#add-recipe form {
+    width: 400px;
+    padding: 30px;
+    border-radius: 12px;
+    background-color: #fff;
+    box-shadow: 0 8px 25px rgba(255,140,0,0.2); /* light orange shadow */
+    margin-left: 0;
+    animation: fadeInLeft 0.6s ease-in-out;
+}
+
+/* Divider */
+.divider {
+    width: 2px;
+    background-color: #FF4500; /* dark orange */
+    transition: all 0.3s;
+}
+
+/* Right Section - Search & Recipes */
+.right-section {
+    flex: 1;
+    padding-left: 20px;
+}
+
+/* Input and textarea styling */
+#add-recipe input[type="text"],
+#add-recipe textarea,
+#add-recipe input[type="file"],
+#search {
+    width: 100%;
+    padding: 16px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    margin-bottom: 15px;
+    transition: all 0.3s;
+}
+
+#add-recipe input[type="text"]:focus,
+#add-recipe textarea:focus,
+#search:focus {
+    border-color: #FF4500;
+    box-shadow: 0 0 5px rgba(255,69,0,0.5);
+    outline: none;
+}
+
+#add-recipe textarea {
+    min-height: 140px;
+    resize: vertical;
+}
+
+/* Submit button */
+#add-recipe button[type="submit"] {
+    padding: 14px 22px;
+    font-size: 18px;
+    border-radius: 8px;
+    border: none;
+    background-color: #FF4500;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+#add-recipe button[type="submit"]:hover {
+    background-color: #cc3700;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(255,140,0,0.3);
+}
+
+/* Recipe Cards */
+#recipes-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.recipe-card {
+    background-color: #fff;
+    border-radius: 10px;
+    width: 220px;
+    padding: 10px;
+    box-shadow: 0 6px 15px rgba(255,140,0,0.15); /* light orange shadow */
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.recipe-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(255,140,0,0.25); /* intensified shadow on hover */
+}
+
+.recipe-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.recipe-card h3 {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 600px;
+    max-height: 80%;
+    overflow-y: auto;
+    animation: fadeInUp 0.5s ease-in-out;
+}
+
+.modal-content img {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.close-btn {
+    background-color: #FF4500;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    float: right;
+    transition: all 0.3s;
+}
+
+.close-btn:hover {
+    background-color: #cc3700;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 40px;
+    background-color: #fff5f0;
+    color: #555;
+}
+
+/* Links */
+a {
+    color: #FF4500;
+}
+
+/* Animations */
+@keyframes fadeInLeft {
+    0% { opacity: 0; transform: translateX(-50px); }
+    100% { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeInUp {
+    0% { opacity: 0; transform: translateY(50px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive Layout */
+@media (max-width: 900px) {
+    main {
+        flex-direction: column;
+    }
+    .divider {
+        display: none;
+    }
+    .left-section,
+    .right-section {
+        flex: 1 1 100%;
+        padding: 0;
+    }
+    #add-recipe form {
+        max-width: 100%;
+        width: 100%;
+    }
+}
+
+/* Section Headings */
+#add-recipe h2,
+#search-recipe h2,
+#recipe-list h2 {
+    font-size: 22px;
+    color: #161514;  /* dark orange to match theme */
+    margin-bottom: 20px;  /* adds gap below heading */
+}
+
+/* Optional: make headings slightly animated on page load */
+#add-recipe h2,
+#search-recipe h2,
+#recipe-list h2 {
+    animation: fadeInUp 0.6s ease-in-out;
+}
+
+/* Existing fadeInUp keyframes */
+@keyframes fadeInUp {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+#falling-food-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* so clicks pass through */
+  overflow: hidden;
+  z-index: 0;
+}
+
+.falling-food {
+  position: absolute;
+  width: 30px; /* adjust size */
+  height: 30px;
+  animation-name: fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(-50px) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0.8;
+  }
+}
+
+/* Info Bar (above footer, scrolling ticker) */
+.info-bar {
+  width: 100%;
+  background: #FF4500;
+  color: white;
+  padding: 8px 0;
+  overflow: hidden;
+  font-weight: bold;
+  font-size: 15px;
+  text-align: center;
+  box-shadow: 0 -2px 6px rgba(0,0,0,0.2);
+  position: relative;
+}
+
+.info-bar p {
+  display: inline-block;
+  white-space: nowrap;
+  margin: 0;
+  padding-left: 100%; /* push off screen initially */
+  animation: scrollText 40s linear infinite; /* loop forever */
+}
+
+@keyframes scrollText {
+  0%   { transform: translateX(0%); }
+  100% { transform: translateX(-100%); }
+}
+
+/* Splash Screen */
+#splash-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: white; /* or gradient if you want */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  animation: fadeOut 1s ease 2.5s forwards; /* fades out after 2.5s */
+}
+
+.splash-logo {
+  width: 300px;
+  height: 300px;
+  animation: zoomIn 2s ease;
+}
+
+/* Zoom in animation */
+@keyframes zoomIn {
+  0% { transform: scale(0); opacity: 0; }
+  50% { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Fade out splash */
+@keyframes fadeOut {
+  to { opacity: 0; visibility: hidden; }
+}
